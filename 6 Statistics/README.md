@@ -1,7 +1,20 @@
 # 6 Statistics
 
-This stage computes the final performance and forecast diagnostics used in the report.
+This stage turns benchmark and kernel-strategy outputs into the final performance tables, forecast diagnostics, exposure checks, and report-ready figures.
 
-Expected work includes cumulative returns, drawdowns, rolling Sharpe ratios, crisis-window comparisons, forecast error metrics, out-of-sample R-squared, normality tests, and tail diagnostics.
+## Files
 
-Use `output` for tables and computed statistics. Use `img` for report-ready figures.
+| File or folder | What it is | What it does |
+| --- | --- | --- |
+| `statistics.py` | Operational Python script | Reads equal-weight and kernel outputs, combines strategies, computes performance metrics, drawdowns, rolling returns/volatility, crisis-window comparisons, forecast diagnostics, exposure tables, statistical tests, and report figures. |
+| `statistics.ipynb` | Paired notebook | Notebook version of `statistics.py` for inspection. Regenerate it from the script after edits. |
+| `output/` | Generated data folder | Stores final strategy tables, diagnostics, residual summaries, and exposure tests. |
+| `img/` | Generated figure folder | Stores report-ready performance, risk, forecast, and allocation figures. |
+
+## Inputs
+
+This stage reads `3 Equal Weight/output`, `5 Kernel Model/output`, `4 Calibration/output`, `1 Dataset/intermediate output`, and `2 Covariates/output`.
+
+## Downstream Use
+
+Selected files from `output/` and `img/` are copied or referenced by `7 Main/main.tex` for the final report.

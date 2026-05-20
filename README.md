@@ -13,27 +13,37 @@ subject to  sum(w) = 1 and 0.01 <= w_i <= 0.07
 
 The lower bound keeps all selected banks represented, while the upper bound limits single-name and regional concentration. This keeps the optimized portfolios economically comparable to the equal-weight global-bank benchmark while still allowing active tilts from the forecasts.
 
-The final main strategies are:
+The maintained strategies are:
 
-- Equal weight benchmark
-- Linear kernel constrained MVE
-- Polynomial degree-2 kernel constrained MVE
-- Gaussian RBF kernel constrained MVE
+- Equal-weight benchmark.
+- Linear kernel constrained MVE.
+- Polynomial degree-2 kernel constrained MVE.
+- Gaussian RBF kernel constrained MVE.
+
+## Root Files
+
+| File | What it is | What it does |
+| --- | --- | --- |
+| `README.md` | Repository overview | Explains the project layout, execution order, and main modelling choices. |
+| `requirements.txt` | Python dependency list | Packages needed to run the scripts: `pandas`, `numpy`, `matplotlib`, `yfinance`, `openpyxl`, and `scipy`. |
+| `.gitignore` | Git hygiene rules | Excludes local environments, caches, notebook checkpoints, LaTeX auxiliary files, and local-only workflow notes. |
 
 ## Repository Layout
 
-| Path | Purpose |
-| --- | --- |
-| `1 Dataset` | Bank price downloads, USD conversion, daily log returns, tradability flags, and dataset audit outputs. |
-| `2 Covariates` | Macro-financial covariate downloads, cleaning, standardization, and diagnostic plots. |
-| `3 Equal Weight` | Equal-weight benchmark returns, weights, and benchmark diagnostics. |
-| `4 Calibration` | Rolling train-validation-active blocks, kernel hyperparameter selection, and validation-based covariance gamma selection. |
-| `5 Kernel Model` | Out-of-sample kernel forecasts and constrained regularized mean-variance backtests. |
-| `6 Statistics` | Performance tables, forecast diagnostics, drawdowns, rolling metrics, tail checks, and report figures. |
-| `7 Main` | Final report source, report assets, and the compiled `main.pdf`. |
-| `9 Complete` | Single-file full-pipeline runner and a compilable copy of the final report source. |
-| `8 Optimality` | Maximum-weight cap search with the minimum weight fixed at 1%. |
-| `utilities` | Shared configuration and helper functions used by the numbered pipeline stages. |
+| Path | What it is | What it contains |
+| --- | --- | --- |
+| `1 Dataset` | Dataset construction stage | Bank price downloads, USD conversion, daily log returns, tradability flags, audit outputs, and dataset diagnostics. |
+| `2 Covariates` | Covariate construction stage | Macro-financial covariate downloads, cleaning, feature transformations, and diagnostic plots. |
+| `3 Equal Weight` | Benchmark stage | Equal-weight benchmark returns, weights, summary statistics, and benchmark diagnostics. |
+| `4 Calibration` | Rolling calibration stage | Train-validation-active blocks, kernel hyperparameter selection, covariance-gamma selection, and calibration diagnostics. |
+| `5 Kernel Model` | Strategy construction stage | Out-of-sample kernel forecasts, constrained MVE weights, strategy returns, and model diagnostics. |
+| `6 Statistics` | Final analysis stage | Performance tables, forecast diagnostics, drawdowns, rolling metrics, crisis windows, exposure tests, and report figures. |
+| `7 Main` | Final report folder | `main.tex`, `main.pdf`, and the figures used by the final report. |
+| `8 Optimality` | Weight-cap sensitivity stage | Maximum-weight cap search with the minimum weight fixed at 1%. |
+| `9 Complete` | Full-pipeline runner | Complete runner script, paired notebook, and report-source copy for packaging. |
+| `utilities` | Shared support code | Project configuration, reusable helper functions, and notebook synchronization tooling. |
+
+Each folder has its own `README.md` with a file-by-file explanation of the local scripts, notebooks, outputs, and figures.
 
 ## Environment
 
@@ -49,16 +59,14 @@ Activate the environment with the standard command for your operating system, th
 python -m pip install -r requirements.txt
 ```
 
-If your system exposes Python as `python3`, use `python3` in the commands below.
+If this machine uses `uv`, the same setup can be done with:
 
-The pipeline is CPU-only. The complete runner asks how many rolling blocks should run in parallel, with a range from 1 to 10 based on the computer's CPU capacity.
+```powershell
+uv venv .venv
+uv pip install --python .\.venv\Scripts\python.exe -r requirements.txt
+```
 
-Suggested CPU parallelism guide:
-
-- `1`: slow or older laptop
-- `3`: average laptop
-- `5`: good/new laptop
-- `10`: desktop or workstation
+The local `.venv/` folder is ignored by Git and can stay in the project directory.
 
 ## Full Pipeline
 
@@ -103,8 +111,8 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
 `9 Complete/main.tex` is a compilable copy for submission packaging. It points to the same report figures under `7 Main/img`. The complete runner does not compile LaTeX unless `--compile-pdf` is provided, so the final checked PDF is not overwritten accidentally.
 
-## Reproducibility and Hygiene
+## Reproducibility And Hygiene
 
 The pipeline keeps no-look-ahead timing: hyperparameters and covariance regularization are selected on validation windows before the active out-of-sample block. Generated figures live in each stage's `img` folder and generated tables/data live in `output` or `intermediate output`.
 
-Before pushing to GitHub, remove local caches, notebook checkpoints, LaTeX auxiliary files, and temporary scratch files. Keep final source files, paired notebooks, final figures, CSV outputs, `7 Main/main.tex`, and `7 Main/main.pdf`.
+Before pushing to GitHub, remove caches, notebook checkpoints, LaTeX auxiliary files, and temporary scratch files. Keep final source files, paired notebooks, final figures, CSV outputs, `7 Main/main.tex`, and `7 Main/main.pdf`.

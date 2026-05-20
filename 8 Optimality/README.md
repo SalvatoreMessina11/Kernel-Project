@@ -1,32 +1,24 @@
 # 8 Optimality
 
-This stage contains only the optimality extension used by the final report: the maximum asset-weight cap is searched while the minimum asset weight is fixed at `1%`.
+This stage runs the maximum-weight cap diagnostic used as the optimality extension. The minimum asset weight remains fixed at `1%`, while the maximum cap is varied to test sensitivity of constrained-MVE performance.
 
-Only the three main report models are included here: linear, polynomial degree-2, and Gaussian/RBF kernel constrained MVE. Broader personal-project experiments are intentionally excluded from this repository.
+## Files
 
-## Script
+| File or folder | What it is | What it does |
+| --- | --- | --- |
+| `search_optimal_max_weight.py` | Operational Python script | Re-runs kernel portfolio construction across a grid of maximum-weight caps, computes performance metrics, selects best caps under multiple objectives, and writes diagnostic figures. |
+| `search_optimal_max_weight.ipynb` | Paired notebook | Notebook version of the optimality script for inspection. Regenerate it from the script after edits. |
+| `output/` | Generated data folder | Stores grid results and selected optimal caps. |
+| `img/` | Generated figure folder | Stores cap-search diagnostics for Sharpe, cumulative return, and drawdown. |
 
-Run:
+## Scope
+
+Only the maintained report models are included: linear, polynomial degree-2, and Gaussian/RBF constrained MVE. Broader personal-project experiments are intentionally excluded.
+
+## Run
 
 ```powershell
 python ".\8 Optimality\search_optimal_max_weight.py"
 ```
 
-The script writes:
-
-- `output/max_weight_grid_metrics.csv`
-- `output/optimal_weight_constraints_by_objective.csv`
-- `output/optimal_weight_constraints.csv`
-- `output/overall_best_weight_constraint.csv`
-- `img/sharpe_by_max_weight.png`
-- `img/cumulative_return_by_max_weight.png`
-- `img/max_drawdown_by_max_weight.png`
-
-The default grid starts at the feasible equal-weight cap and ends at `20%`, with a `0.1` percentage-point step. The lower bound is always `1%`.
-
-Optional environment variables:
-
-- `KERNEL_PROJECT_OPTIMAL_MAX_END`: maximum cap endpoint, default `0.20`.
-- `KERNEL_PROJECT_OPTIMAL_STEP`: grid step, default `0.001`.
-- `KERNEL_PROJECT_OPTIMAL_WORKERS`: worker count, default `auto`. If unset, the script asks for a CPU worker count from 1 to 10. Use `1` for a slow or older laptop, `3` for an average laptop, `5` for a good/new laptop, and `10` for a desktop or workstation.
-- `KERNEL_PROJECT_FORCE_OPTIMAL_GRID`: set to `1` to recompute an existing grid.
+The default grid starts at the feasible equal-weight cap and ends at `20%`, with a `0.1` percentage-point step. Set `KERNEL_PROJECT_FORCE_OPTIMAL_GRID=1` to recompute an existing grid.

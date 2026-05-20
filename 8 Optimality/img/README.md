@@ -1,9 +1,16 @@
 # Optimality Figures
 
-Store the three cap-search figures here:
+This folder stores diagnostic figures from the maximum-weight cap search.
 
-- `sharpe_by_max_weight.png`
-- `cumulative_return_by_max_weight.png`
-- `max_drawdown_by_max_weight.png`
+## Files
 
-These figures are diagnostic outputs for the optimality folder. They are not included in the main report source.
+| File | What it is | What it shows |
+| --- | --- | --- |
+| `sharpe_by_max_weight.png` | Sharpe sensitivity plot | Annualized Sharpe by maximum-weight cap and model. |
+| `cumulative_return_by_max_weight.png` | Cumulative-return sensitivity plot | Cumulative return by maximum-weight cap and model. |
+| `max_drawdown_by_max_weight.png` | Drawdown sensitivity plot | Maximum drawdown by maximum-weight cap and model. |
+| `README.md` | Folder documentation | Describes optimality figure assets. |
+
+## Usage
+
+These figures support the optimality discussion and are diagnostic outputs for cap sensitivity. They are separate from the core report figures in `7 Main/img`.

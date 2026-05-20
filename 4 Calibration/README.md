@@ -1,9 +1,20 @@
 # 4 Calibration
 
-This stage performs rolling calibration for the kernel models and portfolio regularisation settings.
+This stage defines rolling train-validation-active windows and selects model and portfolio regularization parameters without using future active-window data.
 
-Expected work includes defining train-validation-active windows, evaluating hyperparameter grids, selecting model parameters only from past data, selecting the constrained MVE covariance gamma on validation data, and storing selected parameters by rolling block.
+## Files
 
-The stage is CPU-only and can run multiple rolling blocks in parallel. If `KERNEL_PROJECT_CALIBRATION_WORKERS` is not set, the script asks for a worker count from 1 to 10, capped by the available CPU count.
+| File or folder | What it is | What it does |
+| --- | --- | --- |
+| `calibrate.py` | Operational Python script | Builds the model panel, evaluates rolling kernel specifications, selects kernel hyperparameters and constrained-MVE covariance `gamma` on validation data, and saves block-level calibration outputs. |
+| `calibrate.ipynb` | Paired notebook | Notebook version of `calibrate.py` for inspection. Regenerate it from the script after edits. |
+| `output/` | Generated data folder | Stores the model panel, rolling predictions, and selected parameters by block and model. |
+| `img/` | Generated figure folder | Stores parameter-evolution plots used to inspect calibration stability. |
 
-Use `output` for selected hyperparameters and validation summaries. Use `img` for parameter-evolution figures.
+## Rolling Design
+
+Each block uses a train window, then a validation window for selecting hyperparameters, then an active out-of-sample window. The active block is not used for tuning. The script can run rolling blocks in parallel through environment variables such as `KERNEL_PROJECT_CALIBRATION_WORKERS`.
+
+## Downstream Use
+
+`5 Kernel Model/kernel_model.py` consumes the calibrated block parameters and rolling predictions to construct constrained kernel portfolios.

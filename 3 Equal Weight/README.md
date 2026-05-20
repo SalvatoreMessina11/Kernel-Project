@@ -1,28 +1,25 @@
 # 3 Equal Weight
 
-Computes the naive `1/N` benchmark used to evaluate whether the forecasting and constrained MVE pipeline adds economic value.
+This stage computes the naive `1/N` global-bank benchmark. It is the reference strategy used to evaluate whether the forecasting and constrained MVE pipeline adds economic value.
+
+## Files
+
+| File or folder | What it is | What it does |
+| --- | --- | --- |
+| `equal_weight.py` | Operational Python script | Reads USD returns and tradability flags, constructs the equal-weight benchmark, lets weights drift with realized returns, rebalances tradable assets, and saves returns, weights, statistics, and diagnostic plots. |
+| `equal_weight.ipynb` | Paired notebook | Notebook version of `equal_weight.py` for inspection. Regenerate it from the script after edits. |
+| `output/` | Generated data folder | Stores daily benchmark returns, daily bank-level weights, and summary performance statistics. |
+| `img/` | Generated figure folder | Stores benchmark weight and geographic-exposure diagnostics. |
 
 ## Backtest Rule
 
 - Starts at the configured active evaluation date.
 - Holds the same bank universe used by the kernel portfolios.
-- Converts asset log returns to simple returns for daily portfolio aggregation.
+- Uses no forecasts, z-scores, kernel parameters, or optimizer inputs.
 - Lets weights drift with realized returns.
-- Rebalances only assets marked tradable; closed-market positions are carried forward.
-- Normalizes weights back to full investment after each rebalance.
+- Rebalances only assets marked tradable and carries closed-market positions forward.
+- Normalizes back to full investment after rebalancing.
 
-The equal-weight benchmark uses no forecasts, no z-scores and no hyperparameters.
+## Downstream Use
 
-## Outputs
-
-| File | Description |
-|---|---|
-| `output/equal_weight_returns.csv` | Daily benchmark log returns. |
-| `output/equal_weight_statistics.csv` | Mean, volatility, Sharpe, cumulative return, max drawdown and day count. |
-| `output/equal_weight_weights.csv` | Daily bank-level weights. |
-| `img/equal_weight_weights_by_region.png` | Geographic exposure using the shared region palette. |
-| `img/equal_weight_weight_heatmap.png` | Benchmark weight heatmap with a narrow 3.5%-4.5% visual scale. |
-
-## Notebook Sync
-
-`equal_weight.py` is the pipeline script and `equal_weight.ipynb` is its paired notebook source. Keep both aligned after edits.
+`6 Statistics/statistics.py` combines the benchmark with the kernel strategies to build final performance tables, drawdown comparisons, exposure charts, and report figures.
