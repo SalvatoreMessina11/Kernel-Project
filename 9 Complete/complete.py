@@ -10,7 +10,7 @@ from pathlib import Path
 def find_project_root() -> Path:
     start = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd().resolve()
     for candidate in [start, *start.parents]:
-        if (candidate / "utilities" / "config.py").exists() and (candidate / "8 Complete").exists():
+        if (candidate / "utilities" / "config.py").exists() and (candidate / "9 Complete").exists():
             return candidate
     raise RuntimeError("Cannot locate the Kernel-Project root from the current working directory.")
 
@@ -118,7 +118,7 @@ def main(argv: list[str] | None = None) -> int:
         run_python(script, env)
 
     if not args.skip_optimality:
-        run_python(ROOT / "9 Optimality" / "search_optimal_max_weight.py", env)
+        run_python(ROOT / "8 Optimality" / "search_optimal_max_weight.py", env)
 
     if args.compile_pdf:
         compile_main_pdf(args.pdf_passes)

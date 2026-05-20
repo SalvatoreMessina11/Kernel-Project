@@ -1,4 +1,4 @@
-# 9 Optimality
+# 8 Optimality
 
 This stage contains only the optimality extension used by the final report: the maximum asset-weight cap is searched while the minimum asset weight is fixed at `1%`.
 
@@ -9,7 +9,7 @@ Only the three main report models are included here: linear, polynomial degree-2
 Run:
 
 ```powershell
-python ".\9 Optimality\search_optimal_max_weight.py"
+python ".\8 Optimality\search_optimal_max_weight.py"
 ```
 
 The script writes:

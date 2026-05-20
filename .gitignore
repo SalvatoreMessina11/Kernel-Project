@@ -21,6 +21,10 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Local workflow and private notes
+workflow.md
+local_only/
+
 # LaTeX temporary files
 *.aux
 *.bbl

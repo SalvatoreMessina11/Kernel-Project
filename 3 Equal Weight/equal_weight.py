@@ -25,8 +25,8 @@ from utilities.utils import (
 )
 
 DATASET = ROOT / "1 Dataset" / "intermediate output"
-OUTPUT = ensure_dir(ROOT / "3 Equal weight" / "output")
-IMG = ensure_dir(ROOT / "3 Equal weight" / "img")
+OUTPUT = ensure_dir(ROOT / "3 Equal Weight" / "output")
+IMG = ensure_dir(ROOT / "3 Equal Weight" / "img")
 EQUAL_WEIGHT_HEATMAP_MIN = 0.035
 EQUAL_WEIGHT_HEATMAP_MAX = 0.045
 

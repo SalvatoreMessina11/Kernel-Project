@@ -31,8 +31,8 @@ The final main strategies are:
 | `5 Kernel Model` | Out-of-sample kernel forecasts and constrained regularized mean-variance backtests. |
 | `6 Statistics` | Performance tables, forecast diagnostics, drawdowns, rolling metrics, tail checks, and report figures. |
 | `7 Main` | Final report source, report assets, and the compiled `main.pdf`. |
-| `8 Complete` | Single-file full-pipeline runner and a compilable copy of the final report source. |
-| `9 Optimality` | Maximum-weight cap search with the minimum weight fixed at 1%. |
+| `9 Complete` | Single-file full-pipeline runner and a compilable copy of the final report source. |
+| `8 Optimality` | Maximum-weight cap search with the minimum weight fixed at 1%. |
 | `utilities` | Shared configuration and helper functions used by the numbered pipeline stages. |
 
 ## Environment
@@ -65,16 +65,16 @@ Suggested CPU parallelism guide:
 The easiest way to run the complete project is:
 
 ```powershell
-python ".\8 Complete\complete.py"
+python ".\9 Complete\complete.py"
 ```
 
 Useful options:
 
 ```powershell
-python ".\8 Complete\complete.py" --parallel-blocks 4
-python ".\8 Complete\complete.py" --skip-dataset
-python ".\8 Complete\complete.py" --skip-optimality
-python ".\8 Complete\complete.py" --compile-pdf
+python ".\9 Complete\complete.py" --parallel-blocks 4
+python ".\9 Complete\complete.py" --skip-dataset
+python ".\9 Complete\complete.py" --skip-optimality
+python ".\9 Complete\complete.py" --compile-pdf
 ```
 
 The manual stage order is:
@@ -86,7 +86,7 @@ python ".\3 Equal Weight\equal_weight.py"
 python ".\4 Calibration\calibrate.py"
 python ".\5 Kernel Model\kernel_model.py"
 python ".\6 Statistics\statistics.py"
-python ".\9 Optimality\search_optimal_max_weight.py"
+python ".\8 Optimality\search_optimal_max_weight.py"
 ```
 
 ## Report
@@ -101,7 +101,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-`8 Complete/main.tex` is a compilable copy for submission packaging. It points to the same report figures under `7 Main/img`. The complete runner does not compile LaTeX unless `--compile-pdf` is provided, so the final checked PDF is not overwritten accidentally.
+`9 Complete/main.tex` is a compilable copy for submission packaging. It points to the same report figures under `7 Main/img`. The complete runner does not compile LaTeX unless `--compile-pdf` is provided, so the final checked PDF is not overwritten accidentally.
 
 ## Reproducibility and Hygiene
 
