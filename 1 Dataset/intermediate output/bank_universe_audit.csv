@@ -1,0 +1,30 @@
+ticker,name,currency,region,first_valid_price_date,used_in_active_universe
+JPM,JPMorgan Chase,USD,US,2000-01-03,True
+BAC,Bank of America,USD,US,2000-01-03,True
+WFC,Wells Fargo,USD,US,2000-01-03,True
+C,Citigroup,USD,US,2000-01-03,True
+GS,Goldman Sachs,USD,US,2000-01-03,True
+MS,Morgan Stanley,USD,US,2000-01-03,True
+USB,U.S. Bancorp,USD,US,2000-01-03,True
+PNC,PNC Financial Services,USD,US,2000-01-03,True
+HSBA.L,HSBC Holdings,GBP,UK,2000-01-03,True
+BARC.L,Barclays,GBP,UK,2000-01-03,True
+LLOY.L,Lloyds Banking Group,GBP,UK,2000-01-03,True
+NWG.L,NatWest Group,GBP,UK,2000-01-03,True
+STAN.L,Standard Chartered,GBP,UK,2000-01-03,True
+BNP.PA,BNP Paribas,EUR,EU,2000-01-03,True
+ACA.PA,Credit Agricole,EUR,EU,2001-12-14,False
+GLE.PA,Societe Generale,EUR,EU,2000-01-03,True
+SAN.MC,Banco Santander,EUR,EU,2000-01-03,True
+BBVA.MC,BBVA,EUR,EU,2000-01-03,True
+ISP.MI,Intesa Sanpaolo,EUR,EU,2000-01-03,True
+UCG.MI,UniCredit,EUR,EU,2000-01-03,True
+DBK.DE,Deutsche Bank,EUR,EU,2000-01-03,True
+CBK.DE,Commerzbank,EUR,EU,2000-01-03,True
+INGA.AS,ING Groep,EUR,EU,2000-01-03,True
+UBSG.SW,UBS Group,CHF,CH,2000-01-03,True
+8306.T,Mitsubishi UFJ Financial Group,JPY,JP,2005-09-29,False
+8316.T,Sumitomo Mitsui Financial Group,JPY,JP,2000-01-04,True
+8411.T,Mizuho Financial Group,JPY,JP,2003-03-12,False
+8308.T,Resona Holdings,JPY,JP,2000-01-04,True
+8309.T,Sumitomo Mitsui Trust Holdings,JPY,JP,2001-01-01,False

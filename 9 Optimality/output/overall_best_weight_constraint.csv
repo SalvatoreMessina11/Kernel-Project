@@ -1,0 +1,2 @@
+strategy,min_weight,max_weight,mean_daily,vol_daily,sharpe_annualized,cumulative_return,max_drawdown,n_days,mean_top_weight,max_single_asset_weight,mean_effective_assets,mean_zero_weight_share,objective,objective_label,constraint_range
+linear,0.01,0.128,0.00098687654087049989,0.016199057095511199,0.96710440112861684,221.32403567215439,-0.58502679390125267,5476,0.118914319171581,0.128,12.623348504926405,0,sharpe,Max Sharpe,1.0%-12.8%

@@ -1,0 +1,2 @@
+strategy,mean_daily,vol_daily,sharpe_annualized,cumulative_return,max_drawdown,n_days
+polynomial,0.0007142861946210265,0.015486473597997199,0.73218358870478606,48.970418569892772,-0.60820367764336758,5476

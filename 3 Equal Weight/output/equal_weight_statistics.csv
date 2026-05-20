@@ -1,0 +1,2 @@
+strategy,mean_daily,vol_daily,sharpe_annualized,cumulative_return,max_drawdown,n_days
+equal_weight,0.00018910430678314175,0.015196697202325936,0.19753883134141045,3.2649481894489245,-0.78698336480729569,7670
